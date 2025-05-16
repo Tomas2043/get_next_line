@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 13:02:01 by toandrad          #+#    #+#             */
-/*   Updated: 2025/05/15 15:37:17 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/05/16 12:44:03 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static char	*_fill_line_buffer(int fd, char *left_c, char *buffer);
 static char	*_set_line(char *line);
-static char	*ft_strchr(char *s, int c);
 
 char	*get_next_line(int fd)
 {
@@ -89,22 +88,4 @@ static char	*_fill_line_buffer(int fd, char *left_c, char *buffer)
 			break ;
 	}
 	return (left_c);
-}
-
-static char	*ft_strchr(char *s, int c)
-{
-	unsigned int	i;
-	char			cc;
-
-	cc = (char)c;
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == cc)
-			return ((char *)&s[i]);
-		i++;
-	}
-	if (s[i] == cc)
-		return ((char *)&s[i]);
-	return (NULL);
 }
