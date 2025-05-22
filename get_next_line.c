@@ -6,14 +6,14 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 13:02:01 by toandrad          #+#    #+#             */
-/*   Updated: 2025/05/16 12:44:03 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/05/22 11:57:04 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*_fill_line_buffer(int fd, char *left_c, char *buffer);
-static char	*_set_line(char *line);
+static char	*fill_line_buffer(int fd, char *left_c, char *buffer);
+static char	*set_line(char *line);
 
 char	*get_next_line(int fd)
 {
@@ -32,16 +32,16 @@ char	*get_next_line(int fd)
 	}
 	if (!buffer)
 		return (NULL);
-	line = _fill_line_buffer(fd, left_c, buffer);
+	line = fill_line_buffer(fd, left_c, buffer);
 	free(buffer);
 	buffer = NULL;
 	if (!line)
 		return (NULL);
-	left_c = _set_line(line);
+	left_c = set_line(line);
 	return (line);
 }
 
-static char	*_set_line(char *line_buffer)
+static char	*set_line(char *line_buffer)
 {
 	ssize_t	i;
 	char	*left_c;
@@ -61,7 +61,7 @@ static char	*_set_line(char *line_buffer)
 	return (left_c);
 }
 
-static char	*_fill_line_buffer(int fd, char *left_c, char *buffer)
+static char	*fill_line_buffer(int fd, char *left_c, char *buffer)
 {
 	ssize_t	b_read;
 	char	*tmp;
@@ -89,3 +89,24 @@ static char	*_fill_line_buffer(int fd, char *left_c, char *buffer)
 	}
 	return (left_c);
 }
+/*int	main(void)
+{
+	int		fd;
+	char	*line;
+
+	fd = open("test.txt", O_RDONLY);
+	if (fd == -1)
+	{
+		printf("Error opening file\n");
+		return (1);
+	}
+
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s", line);
+		free(line);
+	}
+
+	close(fd);
+	return (0);
+}*/

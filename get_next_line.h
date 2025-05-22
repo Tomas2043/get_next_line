@@ -6,7 +6,7 @@
 /*   By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:58:40 by toandrad          #+#    #+#             */
-/*   Updated: 2025/05/16 12:45:59 by toandrad         ###   ########.fr       */
+/*   Updated: 2025/05/21 14:40:15 by toandrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 char		*get_next_line(int fd);
 char		*ft_strdup(char *s);
