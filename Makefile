@@ -6,7 +6,7 @@
 #    By: toandrad <toandrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 13:53:00 by toandrad          #+#    #+#              #
-#    Updated: 2025/05/15 14:54:33 by toandrad         ###   ########.fr        #
+#    Updated: 2025/05/28 15:21:39 by toandrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,18 +20,23 @@ AR = ar rcs
 SRCS =	get_next_line.c \
 				get_next_line_utils.c 
 
-OBJS = $(SRCS:.c=.o)
+OBJSDIR = Objects
+OBJS = $(addprefix $(OBJSDIR)/, $(SRCS:.c=.o))
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
+	echo "Library $(NAME) built successfully." > test.txt
 
-%.o: %.c get_next_line.h
+$(OBJSDIR)/%.o: %.c get_next_line.h | $(OBJSDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJSDIR):
+	mkdir -p $(OBJSDIR)
+
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJSDIR) test.txt
 
 fclean: clean
 	rm -f $(NAME)
